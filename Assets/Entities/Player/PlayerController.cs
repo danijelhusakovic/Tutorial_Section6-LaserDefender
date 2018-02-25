@@ -4,6 +4,11 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 
 	public float padding = 1f;
+	public float projectileSpeed;
+	public float fireRate = 0.2f;
+	public float health = 250f;
+	public GameObject projectile;
+	
 
 	private float speed;
 	private float xMin, xMax;
@@ -19,7 +24,32 @@ public class PlayerController : MonoBehaviour {
 	
 	
 	void Update () {
-	Move();	
+		if(Input.GetKeyDown(KeyCode.Space)){
+			InvokeRepeating("Fire", 0.00001f, fireRate);
+		}
+		
+		if(Input.GetKeyUp(KeyCode.Space)){
+			CancelInvoke("Fire");
+		}
+		
+		Move();	
+	}
+	
+	void OnTriggerEnter2D (Collider2D collider){
+		Projectile missile = collider.gameObject.GetComponent<Projectile>();
+		if(missile){
+			health -= missile.getDamage();
+			missile.Hit();
+			if (health <= 0f){
+				Destroy (gameObject);
+			}
+		}
+	}
+	
+	void Fire() {
+		Vector3 offset = new Vector3(0f, 1f, 0f);
+		GameObject beam = Instantiate (projectile, transform.position + offset, Quaternion.identity) as GameObject;
+		beam.rigidbody2D.velocity = new Vector3(0f, projectileSpeed, 0f);
 	}
 	
 	public void Move(){
