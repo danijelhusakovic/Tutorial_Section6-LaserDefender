@@ -1,10 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Entities\Enemy\EnemyBehavior.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Entities\EnemyFormation\FormationController.cs">
     <Files>
-      <File FileName="Assets\Scripts\Projectile.cs" Line="12" Column="24" />
-      <File FileName="Assets\Entities\Enemy\EnemyBehavior.cs" Line="14" Column="11" />
-      <File FileName="Assets\Entities\Player\PlayerController.cs" Line="39" Column="54" />
+      <File FileName="05. Laser Defender.sln" Line="41" Column="1" />
+      <File FileName="Assets\Scripts\Projectile.cs" Line="1" Column="1" />
+      <File FileName="Assets\Entities\Player\PlayerController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Entities\EnemyFormation\FormationController.cs" Line="47" Column="27" />
+      <File FileName="Assets\Entities\Enemy\EnemyFormation.cs" Line="4" Column="28" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
