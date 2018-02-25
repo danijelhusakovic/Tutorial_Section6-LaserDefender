@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour {
 	public float fireRate = 0.2f;
 	public float health = 250f;
 	public GameObject projectile;
+	public AudioClip fireSound;
+	
 	
 
 	private float speed;
@@ -41,15 +43,21 @@ public class PlayerController : MonoBehaviour {
 			health -= missile.getDamage();
 			missile.Hit();
 			if (health <= 0f){
-				Destroy (gameObject);
+				Die();
 			}
 		}
 	}
 	
+	void Die(){
+		LevelManager levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+		levelManager.LoadLevel("Lose");
+		Destroy (gameObject);
+	}
+	
 	void Fire() {
-		Vector3 offset = new Vector3(0f, 1f, 0f);
-		GameObject beam = Instantiate (projectile, transform.position + offset, Quaternion.identity) as GameObject;
-		beam.rigidbody2D.velocity = new Vector3(0f, projectileSpeed, 0f);
+		GameObject beam = Instantiate (projectile, transform.position, Quaternion.identity) as GameObject;
+		beam.GetComponent<Rigidbody2D>().velocity = new Vector3(0f, projectileSpeed, 0f);
+		AudioSource.PlayClipAtPoint(fireSound, transform.position);
 	}
 	
 	public void Move(){
